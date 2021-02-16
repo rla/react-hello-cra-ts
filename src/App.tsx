@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Provider } from 'react-redux';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { createStore } from 'redux';
+import { CountPage } from './components/CountPage';
+import { ProfilePage } from './components/ProfilePage';
+import { rootReducer } from './reducers/rootReducer';
 
-function App() {
+const anyWindow = window as any;
+const store = createStore(rootReducer,
+  anyWindow.__REDUX_DEVTOOLS_EXTENSION__ &&
+  anyWindow.__REDUX_DEVTOOLS_EXTENSION__()
+);
+
+export const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <div className="App">
+        <BrowserRouter>
+            <Switch>
+              <Route exact={true} path="/" component={CountPage} />
+              <Route exact={true} path="/profile" component={ProfilePage} />
+            </Switch>
+          </BrowserRouter>
+      </div>
+    </Provider>
   );
-}
-
-export default App;
+};
