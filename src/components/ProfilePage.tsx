@@ -17,18 +17,14 @@ export const ProfilePage = () => {
   if (profileData) {
     return (
       <div>
-        <div>
-          Nimi: {profileData.name}
-        </div>
-        <div>
-          Email: {profileData.email}
-        </div>
+        <div>Nimi: {profileData.name}</div>
+        <div>Email: {profileData.email}</div>
         <div>
           <img src={profileData.photo} alt="Profile" width={150} height={150} />
         </div>
       </div>
     );
   } else {
-    return <div>Laen andmeid ...</div>
+    return <div>Laen andmeid ...</div>;
   }
 };
